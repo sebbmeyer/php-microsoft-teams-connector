@@ -15,7 +15,7 @@ class SimpleCard extends Card
         return [
             "@context" => "http://schema.org/extensions",
             "@type" => "MessageCard",
-            "themeColor" => "0072C6",
+            "themeColor" => isset($this->data['themeColor']) ? $this->data['themeColor'] : "0072C6",
             "title" => $this->data['title'],
             "text" => $this->data['text']
         ];
