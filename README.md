@@ -17,7 +17,7 @@ When you want to send a simple notification to you channel, you can easily creat
 
 ```php
 // create connector instance
-$connector = new \Sebbmyr\Teams\TeamConnector(<INCOMING_WEBHOOK_URL>);
+$connector = new \Sebbmyr\Teams\TeamsConnector(<INCOMING_WEBHOOK_URL>);
 // create card
 $card  = new \Sebbmyr\Teams\SimpleCard(['title' => 'Simple card title', 'text' => 'Simple card text']);
 // send card via connector
