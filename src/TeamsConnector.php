@@ -13,11 +13,12 @@ class TeamsConnector
     {
         $this->webhookUrl = $webhookUrl;
     }
-    
+
     /**
      * Sends card message as POST request
      *
      * @param  TeamsConnectorInterface $card
+     * @throws Exception
      */
     public function send(TeamsConnectorInterface $card)
     {
@@ -33,6 +34,11 @@ class TeamsConnector
             'Content-Type: application/json',
             'Content-Length: ' . strlen($json)
         ]);
-        curl_exec($ch);
+
+        $result = curl_exec($ch);
+
+        if ($result !== "1") {
+            throw new \Exception($result);
+        }
     }
 }
