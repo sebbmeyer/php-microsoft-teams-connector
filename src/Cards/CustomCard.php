@@ -230,11 +230,11 @@ class CustomCard implements TeamsConnectorInterface
     public function addImages(string $title, array $images)
     {
         $section = ['title' => $title];
-        $sectionImage = [];
+        $sectionImages = [];
         foreach ($images as $image) {
-            $sectionImage['image'] = $image;
+            $sectionImages[] = ['image' => $image];
         }
-        $section[] = $sectionImage;
+        $section['images'] = $sectionImages;
         $this->sections[] = $section;
 
         return $this;
