@@ -26,7 +26,20 @@ $connector->send($card);
 
 ### Custom card
 
-You can create your own cards for every purpose you need, just extend the **AbstractCard** class and implement the `getMessage()` function. This is an example of a [Laravel Forge deployment card](https://github.com/sebbmeyer/laravel-teams-connector)
+You can use the provided **CustomCard** class and add a color, facts, images, an activity, actions or a summary to it.
+
+```php
+// create a custom card
+$card  = new \Sebbmyr\Teams\Cards\CustomCard('Package update', 'A custom card class was added to the package.');
+// add information
+$card->setColor('01BC36')
+    ->addFactsText('Supported PHP versions',['<= 5.4.0','7.x'])
+    ->addFactsText('Unsupported PHP versions',['Before Version 5.4'])
+    ->addAction('Visit Github repository','https://github.com/sebbmeyer/php-microsoft-teams-connector')
+    ->addFacts('Facts Section',['Fact Name 1' => 'Fact Value 1','Fact Name 2' => 'Fact Value 2']);
+```
+
+Or you can create your own cards for every purpose you need, just extend the **AbstractCard** class and implement the `getMessage()` function. This is an example of a [Laravel Forge deployment card](https://github.com/sebbmeyer/laravel-teams-connector)
 
 ```php
 \\ Sebbmyr\LaravelTeams\Cards\ForgeCard.php
