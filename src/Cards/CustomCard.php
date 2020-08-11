@@ -94,7 +94,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $title
      * @return CustomCard
      */
-    public function addTitle(string $title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -107,7 +107,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $text
      * @return CustomCard
      */
-    public function addText(string $text)
+    public function setText(string $text)
     {
         $this->text = $text;
 
@@ -120,7 +120,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $summary
      * @return CustomCard
      */
-    public function addSummary(string $summary)
+    public function setSummary(string $summary)
     {
         $this->summary = $summary;
 
@@ -133,7 +133,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $color
      * @return CustomCard
      */
-    public function addColor(string $color)
+    public function setColor(string $color)
     {
         $this->color = $color;
 

@@ -32,7 +32,7 @@ You can use the provided **CustomCard** class and add a color, facts, images, an
 // create a custom card
 $card  = new \Sebbmyr\Teams\Cards\CustomCard('Package update', 'A custom card class was added to the package.');
 // add information
-$card->addColor('01BC36')
+$card->setColor('01BC36')
     ->addFactsText('Supported PHP versions',['<= 5.4.0','7.x'])
     ->addFactsText('Unsupported PHP versions',['Before Version 5.4'])
     ->addAction('Visit Github repository','https://github.com/sebbmeyer/php-microsoft-teams-connector')
