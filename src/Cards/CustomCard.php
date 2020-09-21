@@ -94,7 +94,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $title
      * @return CustomCard
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
 
@@ -107,7 +107,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $text
      * @return CustomCard
      */
-    public function setText(string $text)
+    public function setText($text)
     {
         $this->text = $text;
 
@@ -120,7 +120,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $summary
      * @return CustomCard
      */
-    public function setSummary(string $summary)
+    public function setSummary($summary)
     {
         $this->summary = $summary;
 
@@ -133,7 +133,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $color
      * @return CustomCard
      */
-    public function setColor(string $color)
+    public function setColor($color)
     {
         $this->color = $color;
 
@@ -148,7 +148,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string|null $image
      * @return CustomCard
      */
-    public function addActivity(string $text, string $title = null, string $image = null)
+    public function addActivity($text, $title = null, $image = null)
     {
         $activity = ['activityTitle' => $title];
         if ($text !== null) {
@@ -169,7 +169,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param array|null $array
      * @return CustomCard
      */
-    public function addFactsText(string $title, array $array = null)
+    public function addFactsText($title, array $array = null)
     {
         $section = ['title' => $title];
         if (!is_null($array)) {
@@ -192,7 +192,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param array $array
      * @return CustomCard
      */
-    public function addFacts(string $title, array $array)
+    public function addFacts($title, array $array)
     {
         $section = ['title' => $title];
         $facts = [];
@@ -213,7 +213,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $image
      * @return CustomCard
      */
-    public function addImage(string $title, string $image)
+    public function addImage($title, string $image)
     {
         $this->addImages($title, [$image]);
 
@@ -227,7 +227,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param array $images
      * @return CustomCard
      */
-    public function addImages(string $title, array $images)
+    public function addImages($title, array $images)
     {
         $section = ['title' => $title];
         $sectionImages = [];
@@ -247,7 +247,7 @@ class CustomCard implements TeamsConnectorInterface
      * @param string $url
      * @return CustomCard
      */
-    public function addAction(string $text, string $url)
+    public function addAction($text, $url)
     {
         $this->potentialAction[] = [
             '@context' => 'http://schema.org',
