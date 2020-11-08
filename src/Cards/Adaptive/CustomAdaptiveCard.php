@@ -3,7 +3,7 @@
 namespace Sebbmyr\Teams\Cards\Adaptive;
 
 use Sebbmyr\Teams\AbstractCard as Card;
-use Sebbmyr\Teams\Cards\Adaptive\Elements\AdaptiveCardAction;
+use Sebbmyr\Teams\Cards\Adaptive\Actions\AdaptiveCardAction;
 use Sebbmyr\Teams\Cards\Adaptive\Elements\AdaptiveCardElement;
 
 /**
@@ -117,7 +117,7 @@ class CustomAdaptiveCard extends Card
             $this->actions = [];
         }
 
-        //$this->actions[] = $action->getContent($this->version);
+        $this->actions[] = $action->getContent($this->version);
 
         return $this;
     }

@@ -7,6 +7,11 @@ namespace Sebbmyr\Teams\Cards\Adaptive;
  */
 class Styles
 {
+    /* action style */
+    public const ACTION_STYLE_DEFAULT = "default";
+    public const ACTION_STYLE_POSITIVE = "positive";
+    public const ACTION_STYLE_DESTRUCTIVE = "destructive";
+
     /* block element height */
     public const BLOCK_ELEMENT_HEIGHT_AUTO = "auto";
     public const BLOCK_ELEMENT_HEIGHT_STRETCH = "stretch";
