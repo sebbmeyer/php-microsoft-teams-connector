@@ -1,6 +1,6 @@
 ## PHP Microsoft Teams Connector
 
-A PHP package to send notifications to Microsoft Teams by using "Incoming Webhook". The aim of this package is to create your own cards and simply send notifications to your desired channel. At the moment Microsoft Teams only support MessageCard format via Connectors. I will update the card format, when AdaptiveCard format is supported.
+A PHP package to send notifications to Microsoft Teams by using "Incoming Webhook". The aim of this package is to create your own cards and simply send notifications to your desired channel. Currently only the MessageCard format is fully supported. I'm working on AdaptiveCards since Microsoft started to support them via Connectors. AdaptiveCards are in development, you can find and test the AdaptiveCards on this branch [feature/adaptive-cards](https://github.com/sebbmeyer/php-microsoft-teams-connector/tree/feature/adaptive-cards)
 
 
 ## Package Installation - Composer
