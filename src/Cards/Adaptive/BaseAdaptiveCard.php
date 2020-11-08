@@ -22,7 +22,17 @@ class BaseAdaptiveCard extends Card
             ],
         ];
 
-        $acceptedKeys = ["actions", "body"];
+        $acceptedKeys = [
+            "actions",
+            "body",
+            "selectAction",
+            "fallbackText",
+            "backgroundImage",
+            "minHeight",
+            "speak",
+            "lang",
+            "verticalContentAligment",
+        ];
         foreach ($this->data as $key => $value) {
             if (!in_array($key, $acceptedKeys)) {
                 continue;
