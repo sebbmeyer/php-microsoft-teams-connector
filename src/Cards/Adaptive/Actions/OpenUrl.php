@@ -33,7 +33,7 @@ class OpenUrl extends BaseAction implements AdaptiveCardAction
     {
         // if url is not set, throw exception
         if (!isset($this->url)) {
-            throw new \Exception("Card element url is not set", 500);
+            throw new \Exception("Card action url is not set", 500);
         }
         $action = $this->getBaseContent(
             ["url" => $this->url],

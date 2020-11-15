@@ -67,6 +67,12 @@ class BaseAction
      */
     private $requires;
 
+    /**
+     * Adds base properties to given action and returns it
+     * @param  array  $action
+     * @param  float  $version
+     * @return array
+     */
     public function getBaseContent(array $action, $version)
     {
         // if type is not set, throw exception
