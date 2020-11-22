@@ -205,7 +205,7 @@ class Image extends BaseElement implements AdaptiveCardElement
      * @param string $alignment
      * @return Image
      */
-    public function setHorizontalAligment($alignment)
+    public function setHorizontalAlignment($alignment)
     {
         $this->horizontalAlignment = $alignment;
 
