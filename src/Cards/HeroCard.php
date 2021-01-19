@@ -1,6 +1,6 @@
 <?php
 
-namespace Sebbmyr\Teams\AdaptiveCards;
+namespace Sebbmyr\Teams\Cards;
 
 use Sebbmyr\Teams\AbstractCard as Card;
 
@@ -49,7 +49,7 @@ class HeroCard extends Card
      * @var array
      */
     private $buttons;
-    
+
     public function getMessage()
     {
         $card = [
@@ -155,7 +155,7 @@ class HeroCard extends Card
         if (!isset($this->buttons)) {
             $this->buttons = [];
         }
-        
+
         $this->buttons[] = [
             "type" => $type,
             "title" => $title,
