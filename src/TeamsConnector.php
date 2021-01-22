@@ -22,7 +22,7 @@ class TeamsConnector
      * @param  int $curlOptConnectTimeout by default = 3
      * @throws Exception
      */
-    public function send(TeamsConnectorInterface $card, int $curlOptTimeout = 10, int $curlOptConnectTimeout = 3)
+    public function send(TeamsConnectorInterface $card, $curlOptTimeout = 10, $curlOptConnectTimeout = 3)
     {
         $json = json_encode($card->getMessage());
 
