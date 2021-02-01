@@ -15,6 +15,9 @@ composer require sebbmeyer/php-microsoft-teams-connector
 When you want to send a simple notification to you channel, you can easily create a SimpleCard and send it via the TeamConnector
 
 ```php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
 // create connector instance
 $connector = new \Sebbmyr\Teams\TeamsConnector(<INCOMING_WEBHOOK_URL>);
 // create card
@@ -22,6 +25,18 @@ $card  = new \Sebbmyr\Teams\Cards\SimpleCard(['title' => 'Simple card title', 't
 // send card via connector
 $connector->send($card);
 ```
+
+### Send options
+
+If you run into a timeout issue while sending a card to the Microsoft server, you can override the curl options for _timeout_ and _connectTimeout_ by passing your own values to the send method.
+
+**send(TeamsConnectorInterface $card, $timeout = 10, $connectTimeout = 3)**
+
+Name | Type | Required | Description
+--- | --- | --- | ---
+card | TeamsConnectorInterface | yes | Card object that implements the interface
+timeout | int | no | (Default: 10) CURLOPT_TIMEOUT is maximum timeout in seconds. This value should include the connectTimeout value.
+connectTimeout | int | no | (Default: 3) CURLOPT_CONNECTTIMEOUT is the maximum amount of time in seconds that is allowed to make the connection to the server
 
 ### MessageCard
 
@@ -38,50 +53,11 @@ $card->setColor('01BC36')
     ->addFacts('Facts Section',['Fact Name 1' => 'Fact Value 1','Fact Name 2' => 'Fact Value 2']);
 ```
 
-Or you can create your own cards for every purpose you need, just extend the **AbstractCard** class and implement the `getMessage()` function. This is an example of a [Laravel Forge deployment card](https://github.com/sebbmeyer/laravel-teams-connector)
-
-```php
-\\ Sebbmyr\LaravelTeams\Cards\ForgeCard.php
-public function getMessage()
-{
-    return [
-        "@type" => "MessageCard",
-        "@context" => "http://schema.org/extensions",
-        "summary" => "Forge Card",
-        "themeColor" => ($this->data["status"] === 'success') ? self::STATUS_SUCCESS : self::STATUS_ERROR,
-        "title" => "Forge deployment message",
-        "sections" => [
-            [
-                "activityTitle" => "",
-                "activitySubtitle" => "",
-                "activityImage" => "",
-                "facts" => [
-                    [
-                        "name" => "Server:",
-                        "value" => $this->data["server"]['name']
-                    ],
-                    [
-                        "name" => "Site",
-                        "value" => "[". $this->data["site"]["name"] ."](http://". $this->data["site"]["name"] .")"
-                    ],                        [
-                        "name" => "Commit hash:",
-                        "value" => "[". $this->data["commit_hash"] ."](". $this->data["commit_url"] .")"
-                    ],
-                    [
-                        "name" => "Commit message",
-                        "value" => $this->data["commit_message"]
-                    ]
-                ],
-                "text" => ($this->data["status"] === 'success') ? $this->data["commit_author"] ." deployed some fresh code!" : "Something went wrong :/"
-            ]
-        ]
-    ];
-}
-```
+Or you can create your own cards for every purpose you need, just extend the **AbstractCard** class and implement the `getMessage()` function. This package provides two predefined MessageCards that can use `SimpleCard` and `CustomCard`. For more information on these two cards, you can learn about it [here](docs/messageCards.md)
 
 ### AdaptiveCard
 
-You can almost every element you can find [here](https://adaptivecards.io/explorer/) except **Action.Submit** and as a consequence **Input** elements are useless at the moment. Currently it can be used in two ways:
+You can use almost every element you can find [here](https://adaptivecards.io/explorer/) except **Action.Submit** and as a consequence **Input** elements are useless at the moment. Currently it can be used in two ways:
 
 1) Passing data as an array, you can design it how you want to. The data array can contain the following keys at the top level `body`, `actions`, `selectAction`, `fallbackText`, `backgroundImage`, `minHeight`, `speak`, `lang` and `verticalContentAlignment`. The properties `type`, `version` and `$schema` are set by the BaseAdaptiveCard.
 
@@ -133,23 +109,59 @@ $card->addElement($textBlockA)
 $connector->send($card);
 ```
 
-### HeroCard
+You can find more information about supported elements and actions [here](docs/adaptiveCards.md).
 
-The package also support the HeroCard which is described [here](https://docs.microsoft.com/en-us/microsoftteams/platform/task-modules-and-cards/cards/cards-reference#hero-card). *Note:* The card has an images property that is a type of array of images, but only one card is shown. You can use the HeroCard like this:
+### Other supported card format
+
+To learn more about other supported card format like e.g. `HeroCard` take a look at the documentation [here](docs/otherCards.md).
+
+## Supported frameworks
+
+Currently supported frameworks:
+
+* [Laravel-Teams-Connector](https://github.com/sebbmeyer/laravel-teams-connector)
+
+**If you build a package for an another framework like Yii2, Symphony, ... based on this package. Feel free to submit an PR I will add it to the list**
+
+This is an example of a [Laravel Forge deployment card](https://github.com/sebbmeyer/laravel-teams-connector)
 
 ```php
-// create connector instance
-$connector = new \Sebbmyr\Teams\TeamsConnector(<INCOMING_WEBHOOK_URL>);
-// create card
-$card = new \Sebbmyr\Teams\Cards\HeroCard();
-$card->setTitle("Hero Card")
-    ->setSubtitle("Featuring Deadpool")
-    ->addImage("https://miro.medium.com/max/3840/1*0ubYRV_WNR9iYrzUAVINHw.jpeg")
-    ->setText("Deadpool is a fictional character appearing in American comic books published by Marvel Comics. Created by writer Fabian Nicieza and artist/writer Rob Liefeld, the character first appeared in The New Mutants #98 (cover-dated February 1991). Initially Deadpool was depicted as a supervillain when he made his first appearance in The New Mutants and later in issues of X-Force, but later evolved into his more recognizable antiheroic persona. Deadpool, whose real name is Wade Winston Wilson, is a disfigured mercenary with the superhuman ability of an accelerated healing factor and physical prowess. The character is known as the \"Merc with a Mouth\" because of his tendency to talk and joke constantly, including breaking the fourth wall for humorous effect and running gags.")
-    ->addButton("openUrl", "Wikipedia page", "https://en.wikipedia.org/wiki/Deadpool")
-;
-// send card via connector
-$connector->send($card);
+\\ Sebbmyr\LaravelTeams\Cards\ForgeCard.php
+public function getMessage()
+{
+    return [
+        "@type" => "MessageCard",
+        "@context" => "http://schema.org/extensions",
+        "summary" => "Forge Card",
+        "themeColor" => ($this->data["status"] === 'success') ? self::STATUS_SUCCESS : self::STATUS_ERROR,
+        "title" => "Forge deployment message",
+        "sections" => [
+            [
+                "activityTitle" => "",
+                "activitySubtitle" => "",
+                "activityImage" => "",
+                "facts" => [
+                    [
+                        "name" => "Server:",
+                        "value" => $this->data["server"]['name']
+                    ],
+                    [
+                        "name" => "Site",
+                        "value" => "[". $this->data["site"]["name"] ."](http://". $this->data["site"]["name"] .")"
+                    ],                        [
+                        "name" => "Commit hash:",
+                        "value" => "[". $this->data["commit_hash"] ."](". $this->data["commit_url"] .")"
+                    ],
+                    [
+                        "name" => "Commit message",
+                        "value" => $this->data["commit_message"]
+                    ]
+                ],
+                "text" => ($this->data["status"] === 'success') ? $this->data["commit_author"] ." deployed some fresh code!" : "Something went wrong :/"
+            ]
+        ]
+    ];
+}
 ```
 
 ## License
