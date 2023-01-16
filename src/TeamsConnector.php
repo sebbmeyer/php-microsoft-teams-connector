@@ -17,9 +17,10 @@ class TeamsConnector
     /**
      * Sends card message as POST request
      *
-     * @param  TeamsConnectorInterface $card
-     * @param  int $curlOptTimeout by default = 10
-     * @param  int $curlOptConnectTimeout by default = 3
+     * @param TeamsConnectorInterface $card
+     * @param int                     $curlOptTimeout        by default = 10
+     * @param int                     $curlOptConnectTimeout by default = 3
+     *
      * @throws Exception
      */
     public function send(TeamsConnectorInterface $card, $curlOptTimeout = 10, $curlOptConnectTimeout = 3)
@@ -34,16 +35,18 @@ class TeamsConnector
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $curlOptConnectTimeout);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
-            'Content-Length: ' . strlen($json)
+            'Content-Length: ' . strlen($json),
         ]);
 
-        $result = curl_exec($ch);
+        $result = json_decode(curl_exec($ch));
 
         if (curl_error($ch)) {
             throw new \Exception(curl_error($ch), curl_errno($ch));
         }
-        if ($result !== "1") {
-            throw new \Exception('Error response: ' . $result);
+
+        if (isset($result['statusCode']) === false || $result['statusCode'] !== 200) {
+            throw new \Exception('Error response: ' . $result['reasonPhrase']);
         }
     }
 }
+
