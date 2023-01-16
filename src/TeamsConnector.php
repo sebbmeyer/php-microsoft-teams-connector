@@ -38,7 +38,7 @@ class TeamsConnector
             'Content-Length: ' . strlen($json),
         ]);
 
-        $result = json_decode(curl_exec($ch));
+        $result = json_decode(curl_exec($ch), true);
 
         if (curl_error($ch)) {
             throw new \Exception(curl_error($ch), curl_errno($ch));
