@@ -25,7 +25,7 @@ use Sebbmyr\Teams\Cards\Adaptive\Elements\AdaptiveCardElement;
 class CustomAdaptiveCard extends Card
 {
     use FullWidth;
-    
+
     /**
      * Supported version of adaptive cards
      * @var float
@@ -74,6 +74,12 @@ class CustomAdaptiveCard extends Card
                 "version" => $this->version,
             ],
         ];
+
+        if ($this->fullWidth) {
+            $card["content"]['msteams'] = [
+                "width" => "Full",
+            ];
+        }
 
         if (isset($this->body)) {
             $card["content"]["body"] = $this->body;
