@@ -4,6 +4,7 @@ namespace Sebbmyr\Teams\Cards\Adaptive;
 
 use Sebbmyr\Teams\AbstractCard as Card;
 use Sebbmyr\Teams\Cards\Adaptive\Actions\AdaptiveCardAction;
+use Sebbmyr\Teams\Cards\Adaptive\Contracts\FullWidth;
 use Sebbmyr\Teams\Cards\Adaptive\Elements\AdaptiveCardElement;
 
 /**
@@ -23,6 +24,8 @@ use Sebbmyr\Teams\Cards\Adaptive\Elements\AdaptiveCardElement;
  */
 class CustomAdaptiveCard extends Card
 {
+    use FullWidth;
+    
     /**
      * Supported version of adaptive cards
      * @var float
