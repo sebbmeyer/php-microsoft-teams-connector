@@ -3,12 +3,14 @@
 namespace Sebbmyr\Teams\Cards\Adaptive;
 
 use Sebbmyr\Teams\AbstractCard as Card;
+use Sebbmyr\Teams\Cards\Adaptive\Contracts\FullWidth;
 
 /**
  * Base adaptive card
  */
 class BaseAdaptiveCard extends Card
 {
+    use FullWidth;
     
     public function getMessage()
     {
@@ -21,6 +23,12 @@ class BaseAdaptiveCard extends Card
                 "version" => "1.2",
             ],
         ];
+
+        if ($this->fullWidth) {
+            $card["content"]['msteams'] = [
+                "width" => "Full",
+            ];
+        }
 
         $acceptedKeys = [
             "actions",
