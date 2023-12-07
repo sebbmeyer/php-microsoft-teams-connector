@@ -5,7 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Sebastian Meyer",
+            "name": "Sebastian Bretschneider",
             "email": "sebbmyr@gmail.com"
         }
     ],
@@ -17,8 +17,8 @@
             "Sebbmyr\\Teams\\": "src/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require-dev": {
-        "vlucas/phpdotenv": "^5.6@dev"
+        "vlucas/phpdotenv": "^3.6"
     }
 }
