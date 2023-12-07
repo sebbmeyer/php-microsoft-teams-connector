@@ -92,7 +92,7 @@ $connector = new \Sebbmyr\Teams\TeamsConnector(<INCOMING_WEBHOOK_URL>);
 $data = [
     "body" => [
         [
-            "type" =>  "AdaptiveCards",
+            "type" =>  "TextBlock",
             "text" =>  "Adaptive card test. For Samples and Templates, see https://adaptivecards.io/samples](https://adaptivecards.io/samples)",
         ],
     ],
