@@ -152,6 +152,21 @@ $card->setTitle("Hero Card")
 $connector->send($card);
 ```
 
+## Testing
+
+The test setup is very basic at the moment. There is only one test script available right now.
+
+### Prerequisites
+
+- PHP
+- Composer
+
+### Run tests
+- Run `composer install`
+- Duplicate `.env.example` and rename it to `.env`
+- Add Incoming Webhook url to the `.env` file variable **INCOMING_WEBHOOK**
+- Execute script with `php tests/full_width.php`
+
 ## License
 
 This PHP Microsoft Teams connector is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
