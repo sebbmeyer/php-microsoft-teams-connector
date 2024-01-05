@@ -47,8 +47,8 @@ class CustomCard implements TeamsConnectorInterface
 
     /**
      * CustomCard constructor.
-     * @param null $title
-     * @param null $text
+     * @param string|null $title
+     * @param string|null $text
      */
     public function __construct($title = null, $text = null)
     {
