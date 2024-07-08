@@ -71,7 +71,7 @@ class CustomAdaptiveCard extends Card
             "content" => [
                 "\$schema" => "http://adaptivecards.io/schemas/adaptive-card.json",
                 "type" => "AdaptiveCard",
-                "version" => $this->version,
+                "version" => (string) $this->version,
             ],
         ];
 
