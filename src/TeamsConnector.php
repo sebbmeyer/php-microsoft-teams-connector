@@ -42,7 +42,7 @@ class TeamsConnector
         if (curl_error($ch)) {
             throw new \Exception(curl_error($ch), curl_errno($ch));
         }
-        if ($result !== "1") {
+        if ($result !== "1" && $result !== "") {
             throw new \Exception('Error response: ' . $result);
         }
     }
