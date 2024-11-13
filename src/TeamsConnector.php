@@ -5,7 +5,7 @@ namespace Sebbmyr\Teams;
 /**
  * Teams connector
  */
-class TeamsConnector
+class TeamsConnector implements TeamsConnectorInterface
 {
     private $webhookUrl;
 
@@ -15,26 +15,39 @@ class TeamsConnector
     }
 
     /**
+     * @param string $webhookUrl
+     * @return mixed
+     */
+    public function setWebhookUrl($webhookUrl){
+        $this->webhookUrl = $webhookUrl;
+
+        return $this;
+    }
+
+    /**
      * Sends card message as POST request
      *
-     * @param  TeamsConnectorInterface $card
+     * @param  CardInterface $card
      * @param  int $curlOptTimeout by default = 10
      * @param  int $curlOptConnectTimeout by default = 3
      * @throws Exception
      */
-    public function send(TeamsConnectorInterface $card, $curlOptTimeout = 10, $curlOptConnectTimeout = 3)
+    public function send(CardInterface $card, $curlOptTimeout = 10, $curlOptConnectTimeout = 3)
     {
         $json = json_encode($card->getMessage());
 
-        $ch = curl_init($this->webhookUrl);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $curlOptTimeout);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $curlOptConnectTimeout);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($json)
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $this->webhookUrl,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $json,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => $curlOptTimeout,
+            CURLOPT_CONNECTTIMEOUT => $curlOptConnectTimeout,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($json),
+            ]
         ]);
 
         $result = curl_exec($ch);

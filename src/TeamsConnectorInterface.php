@@ -4,11 +4,6 @@ namespace Sebbmyr\Teams;
 
 interface TeamsConnectorInterface
 {
-
-    /**
-     * Returns message card array
-     *
-     * @return array
-     */
-    public function getMessage();
+    public function setWebhookUrl($webhookUrl);
+    public function send(CardInterface $card, $curlOptTimeout = 10, $curlOptConnectTimeout = 3);
 }

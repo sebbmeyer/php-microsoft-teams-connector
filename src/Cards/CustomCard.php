@@ -2,12 +2,12 @@
 
 namespace Sebbmyr\Teams\Cards;
 
-use Sebbmyr\Teams\TeamsConnectorInterface;
+use Sebbmyr\Teams\CardInterface;
 
 /**
  * Sebbmyr\Teams\Cards\CustomCard
  */
-class CustomCard implements TeamsConnectorInterface
+class CustomCard implements CardInterface
 {
     /**
      * Theme color
