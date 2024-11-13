@@ -5,7 +5,7 @@ namespace Sebbmyr\Teams;
 /**
  * Abstract card
  */
-abstract class AbstractCard implements TeamsConnectorInterface
+abstract class AbstractCard implements CardInterface
 {
     /**
      * @var array
