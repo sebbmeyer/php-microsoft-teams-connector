@@ -2,6 +2,8 @@
 
 namespace Sebbmyr\Teams\Cards\Adaptive\Elements;
 
+use Sebbmyr\Teams\Cards\Adaptive\Actions\AdaptiveCardAction;
+
 /**
  * TextRun  element
  *
@@ -264,6 +266,18 @@ class TextRun implements AdaptiveCardElement
     public function setItalic($italic)
     {
         $this->italic = $italic;
+
+        return $this;
+    }
+
+    /**
+     * Sets SelectAction. Available options can be found in Cards/Adaptive/Actions.php
+     * @param string $selectAction
+     * @return TextRun
+     */
+    public function setSelectAction(AdaptiveCardAction $selectAction)
+    {
+        $this->selectAction = $selectAction;
 
         return $this;
     }
