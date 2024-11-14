@@ -164,7 +164,7 @@ class TextRun implements AdaptiveCardElement
         }
 
         if (isset($this->selectAction) && $version >= 1.2) {
-            $element["selectAction"] = $this->selectAction;
+            $element["selectAction"] = $this->selectAction->getContent($version);
         }
 
         if (isset($this->size) && $version >= 1.2) {
