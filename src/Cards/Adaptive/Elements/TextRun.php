@@ -79,7 +79,7 @@ class TextRun implements AdaptiveCardElement
      * Type: ISelectAction
      * Required: no
      * @version 1.2
-     * @var string
+     * @var AdaptiveCardAction
      */
     private $selectAction;
 
