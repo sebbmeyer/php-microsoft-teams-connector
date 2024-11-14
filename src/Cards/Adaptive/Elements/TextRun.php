@@ -272,7 +272,7 @@ class TextRun implements AdaptiveCardElement
 
     /**
      * Sets SelectAction. Available options can be found in Cards/Adaptive/Actions
-     * @param string $selectAction
+     * @param AdaptiveCardAction $selectAction
      * @return TextRun
      */
     public function setSelectAction(AdaptiveCardAction $selectAction)
