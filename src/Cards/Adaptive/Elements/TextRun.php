@@ -79,7 +79,7 @@ class TextRun implements AdaptiveCardElement
      * Type: ISelectAction
      * Required: no
      * @version 1.2
-     * @var string
+     * @var AdaptiveCardAction
      */
     private $selectAction;
 
@@ -164,7 +164,7 @@ class TextRun implements AdaptiveCardElement
         }
 
         if (isset($this->selectAction) && $version >= 1.2) {
-            $element["selectAction"] = $this->selectAction;
+            $element["selectAction"] = $this->selectAction->getContent($version);
         }
 
         if (isset($this->size) && $version >= 1.2) {
@@ -271,8 +271,8 @@ class TextRun implements AdaptiveCardElement
     }
 
     /**
-     * Sets SelectAction. Available options can be found in Cards/Adaptive/Actions.php
-     * @param string $selectAction
+     * Sets SelectAction. Available options can be found in Cards/Adaptive/Actions
+     * @param AdaptiveCardAction $selectAction
      * @return TextRun
      */
     public function setSelectAction(AdaptiveCardAction $selectAction)

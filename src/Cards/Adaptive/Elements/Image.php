@@ -2,6 +2,8 @@
 
 namespace Sebbmyr\Teams\Cards\Adaptive\Elements;
 
+use Sebbmyr\Teams\Cards\Adaptive\Actions\AdaptiveCardAction;
+
 /**
  * Image element
  *
@@ -65,7 +67,7 @@ class Image extends BaseElement implements AdaptiveCardElement
      * Type: ISelectAction
      * Required: no
      * @version 1.1
-     * @var string
+     * @var AdaptiveCardAction
      */
     private $selectAction;
 
@@ -135,7 +137,7 @@ class Image extends BaseElement implements AdaptiveCardElement
         }
 
         if (isset($this->selectAction) && $version >= 1.1) {
-            $element["selectAction"] = $this->selectAction;
+            $element["selectAction"] = $this->selectAction->getContent($version);
         }
 
         if (isset($this->size) && $version >= 1.0) {
@@ -244,6 +246,18 @@ class Image extends BaseElement implements AdaptiveCardElement
     public function setWidth($width)
     {
         $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Sets SelectAction. Available options can be found in Cards/Adaptive/Actions
+     * @param AdaptiveCardAction $selectAction
+     * @return Image
+     */
+    public function setSelectAction(AdaptiveCardAction $selectAction)
+    {
+        $this->selectAction = $selectAction;
 
         return $this;
     }
